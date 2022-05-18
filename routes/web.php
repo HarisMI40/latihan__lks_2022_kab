@@ -17,6 +17,8 @@ use App\Http\Controllers\customer\loginController as customerLogin;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Login Admin
 Route::prefix('admin')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('login', [loginController::class, 'index']);
@@ -29,7 +31,7 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-
+// Login Customer
     Route::middleware('guestCustomer')->group(function () {
         Route::get('login', [customerLogin::class, 'index']);
         Route::post('login', [customerLogin::class, 'login'])->name('customer.login');
